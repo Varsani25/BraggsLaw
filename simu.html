@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        .cls {
+            display: flex;
+            border: 2px solid black;
+            margin: 1rem;
+            padding: 1rem;
+            border-radius: 50px;
+            background: #FAF7F4;
+        }
+
+        .calc {
+            display: flex;
+            flex-direction: row;
+            border: 2px solid black;
+            margin: 1rem;
+            padding: 1rem;
+            border-radius: 50px;
+            gap: 6rem;
+            justify-content: center;
+            background: #FAF7F4;
+        }
+
+        .formulaContainer {
+            gap: 2rem;
+            display: flex;
+            flex-direction: column;
+            width: 20rem;
+        }
+
+        .parameterContainer,
+        .calculationContainer {
+            width: 20rem;
+        }
+
+        .formulaImg {
+            width: 15rem;
+            margin: 0 auto;
+        }
+
+        .sim {
+            /* flex: 1; */
+            width: 75%;
+            margin: 1rem;
+            padding: 2rem;
+        }
+
+        .sliderDiv {
+            display: grid;
+            grid-template-columns: 2fr 4fr 1fr;
+        }
+
+        .comb {
+            display: flex;
+            flex-direction: column;
+            width: 28%;
+            margin: 1rem;
+            padding: 1.5rem;
+            border: 2px solid grey;
+            border-radius: 50px;
+            align-items: center;
+            row-gap: 1.5rem;
+            background-image: linear-gradient(109.6deg, rgba(156, 252, 248, 0.6) 11.2%, rgba(110, 123, 251, 0.6) 91.1%);
+
+        }
+
+        .con {
+            /* flex: 1; */
+            width: 100%;
+            margin: 0.1rem;
+            padding: 0.5rem;
+            border: 2px solid grey;
+            border-radius: 30px;
+            padding: 1rem 0rem 1rem 1rem;
+            min-width: 22rem;
+            overflow: hidden;
+            background: #FAF7F4;
+        }
+
+        body {
+            display: grid;
+        }
+
+        #myrange {
+            width: 50%;
+            margin: auto;
+        }
+
+        #wave_box {
+            /* height: 600px; */
+            /* width: 800px;    */
+            transform: rotateX(180deg) rotateY(180deg);
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .matter {
+
+            width: 100%;
+        }
+
+        .wave_path {
+            stroke: blue;
+            fill: none;
+            stroke-width: 2px;
+        }
+
+        #illustration {
+            transform: rotateX(180deg) rotateY(180deg);
+            width: 100%;
+            height: 100%;
+        }
+
+        .illus_plane,
+        .illus_iline1,
+        .illus_iline2,
+        .illus_iangle,
+        .illus_dist {
+            stroke: gray;
+            fill: none;
+            stroke-width: 2px;
+        }
+
+        #iwaves_illus {
+            width: 100%;
+            height: 100%;
+        }
+
+        .container2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-right: -25px;
+
+        }
+
+        .sim_container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+            height: 70vh;
+            background: linear-gradient(178deg, rgb(156, 177, 248) 7.5%, rgb(153, 247, 243) 93.1%);
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 5px 10px #888888;
+            aspect-ratio: 6/4;
+        }
+
+        .ansText {
+            font-size: 2rem;
+            color: rgba(26, 9, 124, 0.8);
+            text-shadow: 2px 2px 1px white;
+            font-weight: bolder;
+        }
+
+        #illus_iangle_text {
+            font: 13px sans-serif;
+            background: whitesmoke;
+            /* transform: rotateX(180deg) rotateY(180deg); */
+        }
+
+        #o_waves,
+        #o_waves_illus {
+            transform: rotateY(180deg);
+        }
+
+        #o_waves .wave_path {
+            /* transform: rotateX(180deg); */
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="cls">
+            <div class="sim">
+                <div class="sim_container">
+                    <div id="i_waves">
+                        <svg id="wave_box"></svg>
+                    </div>
+                    <div id="o_waves">
+    
+                    </div>
+                </div>
+    
+    
+            </div>
+            <div class="comb">
+                <div class="con">
+                    <label for="">Angle (in Degree 0-90) : </label><br>
+                    <input type="range" min="0" max="90" value="45" id="angleRange"><br>
+    
+                    <label for="">Wavelength ( nm / &#8491;) :</label><br>
+                    <input type="range" min="10" max="100" value="50" id="wavRange">
+                    &emsp;
+                    <select name="wavUnit" id="wavUnit">
+                        <option value="nm">nm</option>
+                        <option value="&#8491;">&#8491;</option>
+                    </select>
+                    <br>
+    
+                    <label for="">Distance ( nm / &#8491;) : </label>
+                    <br>
+                    <input type="range" min="50" max="300" value="150" id="distRange">&emsp;
+                    <select name="distUnit" id="distUnit">
+                        <option value="nm">nm</option>
+                        <option value="&#8491;">&#8491;</option>
+                    </select>
+                </div>
+                <div class="con">
+                    <div class="container2">
+                        <div id="i_waves_illus">
+                            <svg id="illustration"></svg>
+                        </div>
+                        <div id="o_waves_illus">
+                        </div>
+    
+                    </div>
+                </div>
+                <div id="ansText" class="ansText"></div>
+            </div>
+        </div>
+        <div class="calc">
+            <div class="formulaContainer">
+                <h4>Formula : </h4>&emsp;
+                <img class="formulaImg" src="http://hyperphysics.phy-astr.gsu.edu/hbase/quantum/imgqua/Braggeq.gif" alt="">
+            </div>
+            <div class="parameterContainer">
+                <h4>Value of Parameteres : </h4><br>
+                <span id="calcParams">
+                </span>
+    
+            </div>
+            <div class="calculationContainer">
+                <h4>Calculation for n : </h4>
+                <br>
+                <span id="calcSteps">
+                </span>
+    
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        var box_width = 800;
+        var box_height = 600;
+        var wave_height = 50;
+        var default_angle = 45;
+        var repeat_count = 1000;
+        var no_waves = 2;
+        var curr_angle = document.getElementById("angleRange").value;
+        var curr_wavelength = document.getElementById("wavRange").value;
+        var curr_distance = document.getElementById("distRange").value;
+        var distUnit = document.getElementById("distUnit").value;
+        var wavUnit = document.getElementById("wavUnit").value;
+        var atom_per_row = 4;
+        var atom_spacing = 200;
+        var normIndex = 1;
+
+        var wave_box = document.getElementById("wave_box");
+        var illustration = document.getElementById("illustration");
+
+        function round(val, dig) {
+            const fTen = Math.pow(10, dig)
+            return Math.round(val * fTen) / fTen
+        }
+
+        function getCalc() {
+            var wav_nm = (wavUnit != "nm") ? curr_wavelength * 10 : curr_wavelength;
+            var dist_nm = (distUnit != "nm") ? curr_distance * 10 : curr_distance;
+
+            var sinVal = round(Math.sin(curr_angle * (Math.PI) / 180), 4);
+            var n = round((2 * dist_nm * sinVal) / wav_nm, 4);
+
+            var parameter_html = "<h5>" +
+                "<b>λ : " + ((wavUnit != "nm") ? curr_wavelength + " &#8491; = " : "") + wav_nm + " nm</b><br>" +
+                "<b>θ : " + curr_angle + " °</b><br>" +
+                "<b>d : " + ((distUnit != "nm") ? curr_distance + " &#8491; = " : "") + dist_nm + " nm</b>" +
+                "</h5>";
+            var steps_html = "<p> n * (" + wav_nm + " nm) = 2 * (" + dist_nm + " nm) * sin(" + curr_angle + "°) </p>" +
+                "<p> n * (" + wav_nm + " nm) = (2 * " + dist_nm + " * sin(" + curr_angle + "°)) nm </p>" +
+                "<p> (n * " + wav_nm + ") nm = (" + (2 * dist_nm) + " * " + sinVal + ") nm </p>" +
+                "<p> n * " + wav_nm + " = " + round(2 * dist_nm * sinVal, 4) + " </p>" +
+                "<p> n = (" + round(2 * dist_nm * sinVal, 4) + " / " + wav_nm + ") </p>" +
+                "<h5><b>n = " + n + "</b></h5>";
+
+            document.getElementById("ansText").innerHTML = "n : "+n;
+            return [parameter_html, steps_html];
+
+        }
+
+        update();
+        function update() {
+            illustration.innerHTML = "<path class='illus_plane' d='M 0,20 l 120,0 M 0,70 l 120,0' />";
+            var path = "c " + curr_wavelength / 2 + " -" + curr_wavelength + ", " + curr_wavelength / 2 + " " + curr_wavelength + ", " + curr_wavelength + " 0";
+            wave_box.innerHTML = "<defs><linearGradient id='gradient' x1='0%' y1='0%' x2='100%' y2='0%'><stop offset='11.2%' stop-color='rgb(255, 230, 109)' /><stop offset='100.2%' stop-color='rgb(87, 232, 107)' /></linearGradient></defs>";
+            wave_box.innerHTML += "<rect fill='url(#gradient)' class='matter' x='0' y='0' height='" + (curr_distance * (no_waves - 1) + 50) + "'>";
+            // wave_box.innerHTML="";
+            for (var i = 1; i <= no_waves; i++) {
+                var curr_path = "M 0 " + ((curr_distance * (i - 1)) + 20);
+                for (var j = 0; j < repeat_count; j++) {
+                    curr_path += " " + path;
+                }
+                for (var j = 0; j < atom_per_row; j++) {
+                    wave_box.innerHTML += "<circle cx='" + j * atom_spacing + "' cy=" + ((curr_distance * (i - 1)) + 20) + " r='15' stroke='black' stroke-width='3' fill='red' />"
+                }
+                wave_box.innerHTML += "<circle cx='0' cy=" + ((curr_distance * (i - 1)) + 20) + " r='15' stroke='black' stroke-width='3' fill='red' />"
+
+                wave_box.innerHTML += "<path id='wave" + i + "' y=" + (curr_distance * (i - 1)) + 20 + " class='wave_path' d='" + curr_path + "' transform=rotate(" + curr_angle + ",0," + ((curr_distance * (i - 1)) + 20) + ")>" +
+                    "<animateTransform class='wave_animation' attributeName='transform' attributeType='XML'" +
+                    "type='translate' from='0 0' to='-1000 0' dur='20s' repeatCount='indefinite' additive='sum' accumulate='sum' />" +
+                    "</path> ";
+
+
+
+            }
+
+            illustration.innerHTML += "<path class='illus_iline1' d='M 0,20 l 400,0' transform=rotate(" + curr_angle + ",0,20) />";
+            illustration.innerHTML += "<path class='illus_iline2' d='M 0,70 l 400,0' transform=rotate(" + curr_angle + ",0,70) />";
+            epx = 40 * Math.cos(curr_angle * Math.PI / 180);
+            epy = 70 + 40 * Math.sin(curr_angle * Math.PI / 180);
+            ang_x = 20 + ((40 + epx) / 2);
+            ang_y = 10 + ((70 + epy) / 2);
+            waveT_x = 150 * Math.cos(curr_angle * Math.PI / 180) - 50 * (90 - curr_angle) / 90;
+            waveT_y = 70 + 150 * Math.sin(curr_angle * Math.PI / 180) - 100 * (curr_angle / 90);
+            console.log(epx, epy);
+            illustration.innerHTML += "<path class='illus_iangle' d='M 40,70 A 40,40 0 0 1 " + epx + "," + epy + "'/>"
+            illustration.innerHTML += "<text class='illus_iangle_text' x=" + ang_x + " y=" + ang_y + " transform=rotate(180," + ang_x + "," + ang_y + ") dominant-baseline='middle' text-anchor='middle'>θ: " + curr_angle + "°</text>"
+            illustration.innerHTML += "<text class='illus_iwav_text' x=" + waveT_x + " y=" + waveT_y + " transform=rotate(180," + waveT_x + "," + waveT_y + ") dominant-baseline='middle' text-anchor='middle'>λ: " + curr_wavelength + " " + wavUnit + "</text>"
+            illustration.innerHTML += "<text class='illus_idist_text' x='140' y='45' transform=rotate(180,140,45) dominant-baseline='middle' text-anchor='middle'>d: " + curr_distance + " " + distUnit + "</text>"
+            illustration.innerHTML += "<path class='illus_dist' d='M 140,20 l 5,0 l -10,0 M 140,20 l 0,15 M 140,55 l 0,15 l 5,0 l -10,0'/>"
+
+
+            var i_waves = document.getElementById("wave_box");
+            var o_waves = i_waves.cloneNode(true);
+            var o_waves_illus = illustration.cloneNode(true);
+
+            var o_waves_animation = o_waves.querySelectorAll(".wave_animation");
+
+            o_waves_animation.forEach(function (anim) {
+                anim.setAttribute("from", "-1000 0");
+                anim.setAttribute("to", "0 0");
+
+            });
+
+
+
+            document.getElementById("o_waves").innerHTML = "";
+            document.getElementById("o_waves").appendChild(o_waves);
+
+            document.getElementById("o_waves_illus").innerHTML = "";
+            o_waves_illus.removeChild(o_waves_illus.querySelector(".illus_iangle_text"));
+            o_waves_illus.removeChild(o_waves_illus.querySelector(".illus_dist"));
+            o_waves_illus.removeChild(o_waves_illus.querySelector(".illus_iwav_text"));
+            o_waves_illus.removeChild(o_waves_illus.querySelector(".illus_idist_text"));
+
+            document.getElementById("o_waves_illus").appendChild(o_waves_illus);
+
+            var [parameter_html, steps_html] = getCalc();
+
+            document.getElementById("calcSteps").innerHTML = steps_html;
+            document.getElementById("calcParams").innerHTML = parameter_html;
+
+
+        }
+
+        var angleSld = document.getElementById("angleRange");
+        angleSld.oninput = function () {
+            curr_angle = this.value;
+            var all_waves = document.querySelectorAll(".wave_path");
+            all_waves.forEach(wave => wave.setAttribute("transform", "rotate(" + this.value + ",0," + wave.getAttribute("y") + ")"));
+            update();
+        }
+
+        var distSld = document.getElementById("distRange");
+        distSld.oninput = function () {
+            wave_height = this.value;
+            curr_distance = this.value;
+            update();
+        }
+
+        var wavSld = document.getElementById("wavRange");
+        wavSld.oninput = function () {
+            curr_wavelength = this.value;
+            update();
+        }
+
+        document.getElementById("wavUnit").oninput = function () {
+            wavUnit = this.value;
+            update();
+        }
+        document.getElementById("distUnit").oninput = function () {
+            distUnit = this.value;
+            update();
+        }
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Chemistry Virtual Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam&family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/6bf4d6296c.js" crossorigin="anonymous"></script>
+  <style>
+    /* add your CSS styles here */
+    body {
+      margin: 0;
+      font-family: 'Questrial', sans-serif;
+
+
+    }
+
+    * {
+      /* font-family: 'Kalam', cursive; */
+      /* font-family: 'M PLUS Rounded 1c', sans-serif; */
+    }
+
+    header {
+      text-align: center;
+      background: linear-gradient(to bottom right, #3b3d4b, #1c1d26);
+      padding: 20px;
+      position: relative;
+      background-color: #000000;
+      background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0;
+      text-shadow: 2px 2px #000;
+      font-family: 'Secular One', sans-serif;
+    }
+
+    section {
+      display: block;
+      margin: 2rem auto;
+      width: 80%;
+    }
+
+    #simulations {
+      margin: 0;
+      width: 100vw;
+      height: 102vh;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-evenly;
+      margin: 0;
+      padding: 0;
+      background-color: #3b3d4b;
+      border-bottom: 1px solid #ccc;
+    }
+
+    nav li {
+      margin: 0;
+      padding: 0;
+    }
+
+    nav button {
+      font-size: 16px;
+      font-weight: bold;
+      padding: 15px;
+      margin: 0;
+      border: none;
+      background-color: transparent;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    nav button:hover {
+      background-color: #fff;
+      color: #3b3d4b;
+    }
+
+    nav button :focus {
+      background-color: #fff;
+      color: #3b3d4b;
+      box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+    }
+
+
+    .experiment {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .experiment h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .experiment h3 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .experiment p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .experiment ul {
+      list-style-type: disc;
+      margin: 0 0 10px 20px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .experiment li {
+      margin-bottom: 5px;
+    }
+
+    .logOut {
+      position: absolute;
+      right: 2rem;
+      top: 1rem;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .aimClass,
+    .apprClass,
+    .derClass {
+      display: grid;
+      grid-template-columns: 1fr 9fr;
+      align-items: first baseline;
+    }
+
+    .derClass li::marker {
+      content: '‣ ';
+      font-size: 1.5rem;
+    }
+
+    .brLawimg {
+      float: right;
+      margin: 1rem;
+      width: 35%;
+    }
+
+    #quizFrame,
+    #simuFrame {
+      display: block;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .ins1 {
+      margin: 0 2rem 1rem 0;
+      float: left;
+      width: 22%;
+      border-radius: 20px;
+    }
+
+    .ins3 {
+      margin: 0 2rem 1rem 0;
+      float: right;
+      width: 23%;
+      border-radius: 20px;
+    }
+    .ins2{
+      width: 65%;
+      border-radius: 20px;
+    }
+    .ins4{
+      width: 53%;
+    }
+    .insImgs{
+      margin: 1rem;
+/* display: grid; */
+/* grid-template-columns: 1fr 2fr; */
+      display: flex;
+      gap: 3rem;
+    }
+  </style>
+</head>
+
+<body onload="showSection('aim-and-apparatus')">
+  <header>
+    <h1 class="mainTitle">Bragg's Law</h1>
+    <a class="logOut" href="http://localhost/CAT_Innovative/login.php"><i class="fa-solid fa-right-from-bracket"></i></a>
+  </header>
+
+  <nav>
+    <ul>
+      <li><button onclick="showSection('aim-and-apparatus')">Aim & Apparatus</button></li>
+      <li><button onclick="showSection('procedure')">Procedure</button></li>
+      <li><button onclick="showSection('simulations')">Simulations</button></li>
+      <li><button onclick="showSection('quiz')">Quiz</button></li>
+    </ul>
+  </nav>
+
+  <section id="aim-and-apparatus">
+
+    <div class="aimClass">
+      <h3><b>Aim :</b></h3>
+      <p>The aim of Bragg's law is to determine the spacing between the crystal planes in a crystal lattice by analyzing
+        the diffraction pattern of X-rays that are incident on the crystal at a particular angle</p>
+
+    </div>
+    <hr>
+    <div class="apprClass">
+      <h3><b>Appratus :</b></h3>
+      <div>
+        <p>Bragg's law is a fundamental principle in X-ray crystallography, which describes the relationship between the
+          angles of incidence and diffraction of X-rays by a crystal lattice. The apparatus required to demonstrate
+          Bragg's law is relatively simple and typically includes the following:</p>
+        <p>(1) <b>X-ray source (such as a tube) :</b> A source of X-rays, such as an X-ray tube, is needed to produce a
+          beam of X-rays.
+        </p>
+        <p>(2) <b>Crystal sample:</b> A crystal of a known structure is required to diffract the X-ray beam. The crystal
+          should be of a suitable size and orientation to produce a diffracted beam that can be measured.</p>
+        <p>(3) <b>Collimator (to control the beam of X-rays) :</b> A collimator is used to narrow the X-ray beam and
+          ensure that it is of a suitable size
+          and shape to interact with the crystal sample.</p>
+        <p>(4) <b>X-ray detector (such as a film or digital sensor) :</b> A detector is used to measure the intensity
+          and angle of the diffracted X-ray beam.
+          Commonly used detectors include photographic film, scintillation counters, and area detectors.</p>
+        <p>(5) <b>Goniometer (to rotate the sample) :</b> A goniometer is used to position the crystal sample and
+          detector at the correct angles
+          with respect to the X-ray beam. This allows the diffraction pattern to be measured at different angles.</p>
+        <p>(6) <b>Data analysis software:</b> Specialized software is used to analyze the diffraction data and calculate
+          the crystal structure.</p>
+        <p>Together, these components make up a basic X-ray diffractometer, which is the primary tool used for
+          crystallographic research and the determination of crystal structures using Bragg's law.</p>
+      </div>
+    </div>
+    <hr>
+    <div class="derClass">
+      <h3><b>Derivation :</b></h3>
+      <div>
+        <img class="brLawimg" src="Brlaw.jpeg" alt="">
+        <p>(Deriving Bragg's Law by Paul Schields)</p>
+        <ul style="padding-left: 0;">
+          <li>
+            <p>Bragg's Law can easily be derived by considering the conditions necessary to make the phases of the beams
+              coincide
+              when the incident angle equals and reflecting angle.</p>
+          </li>
+          <li>
+            <p>The rays of the incident beam are always in phase and parallel up to the point at which the top beam
+              strikes the top layer at atom z (Fig. 1). </p>
+          </li>
+          <li>
+            <p>The second beam continues to the next layer where it is scattered by atom B. The second beam must travel
+              the extra distance AB + BC if the two beams are to continue traveling adjacent and parallel. </p>
+          </li>
+          <li>
+            <p>This extra distance must be an integral (n) multiple of the wavelength (λ) for the phases of the two
+              beams to be the same:</p>
+          </li>
+
+        </ul>
+        <br>
+        <hr>
+        <p>‣ Fig. 1 Deriving Bragg's Law using the reflection geometry and applying trigonometry. The lower beam must
+          travel the extra distance (AB + BC) to continue traveling parallel and adjacent to the top beam.</p>
+        <p>‣ Recognizing d as the hypotenuse of the right triangle Abz, we can use trigonometry to relate d and Θ to the
+          distance (AB + BC). The distance AB is opposite Θ so,</p>
+        <div style="margin: auto;width: fit-content;">
+          <p>nλ = AB +BC (2).</p>
+          <p>AB = d sinΘ(3).&emsp;&emsp;Because AB = BC eq. (2) becomes,</p>
+          <p>nλ = 2AB (4).&emsp;&emsp;Substituting eq. (3) in eq. (4) we have,</p>
+          <h3><b>nλ = 2 d sinΘ</b></h3>
+        </div>
+
+        <p>and Bragg's Law has been derived. The location of the surface does not change the derivation of Bragg's Law.
+        </p>
+      </div>
+    </div>
+
+    <br>
+
+  </section>
+
+  <section id="simulations">
+    <iframe id="simuFrame" src="simu.html" frameborder="0"></iframe>
+
+  </section>
+
+  <section id="quiz">
+    <iframe id="quizFrame" src="quiz.html" frameborder="0"></iframe>
+
+  </section>
+
+  <section id="procedure">
+    <h1><b>Instrument : </b></h1>
+    <br>
+    <div style="position: relative;line-height: 1.5rem;">
+      <img class="ins1" src="ins1.jpg" alt="">
+      <h3><b>Steps : </b></h3>
+      <ol>
+        <li>Mount the crystal sample on the goniometer in the X-ray beam path. The crystal should be positioned so that
+          the X-rays hit the crystal at an appropriate angle.</li>
+        <!-- <br> -->
+        <li>Use the collimator to adjust the size and shape of the X-ray beam.</li>
+        <li>Turn on the X-ray source and direct the beam at the crystal sample.</li>
+        <li>Rotate the goniometer to change the angle between the crystal and the incoming X-rays. This will change the
+          angle of diffraction.</li>
+        <li>Place the X-ray detector on the other side of the crystal and position it to detect the diffracted X-rays.
+        </li>
+        <li>Record the diffraction pattern by either taking a photograph of the detector or recording the signal
+          digitally.</li>
+        <li>Analyze the diffraction pattern to determine the angles of the diffracted X-rays and calculate the
+          interplanar spacing of the crystal lattice using Bragg's law.</li>
+      </ol>
+      <p>Note: The specific details of this procedure may vary depending on the specific experiment and equipment used.
+        It is important to consult the instructions provided with your equipment and follow established laboratory
+        safety protocols.</p>
+
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div style="position: relative;line-height: 1.5rem;">
+      <img class="ins3" src="ins3.jpg" alt="">
+      <p>In an XRD spectrometer, a sample is exposed to a beam of X-rays, which causes the atoms in the sample to
+        diffract the X-rays in different directions. The diffracted X-rays are collected by a detector, and the
+        resulting diffraction pattern is analyzed to determine the crystal structure of the material.</p>
+      <p>The diffraction pattern is produced when the X-rays interact with the atoms in the sample in a way that depends
+        on the spacing of the atoms in the crystal lattice. The X-rays that are diffracted by the atoms interfere with
+        each other, resulting in a pattern of bright spots and dark areas on the detector. The positions and intensities
+        of these spots are determined by the crystal structure of the material.</p>
+      <p>XRD spectrometers are used in a wide range of applications, including material science, chemistry, physics, and
+        geology. They are capable of providing information about the crystalline structure of materials, including the
+        lattice constant, crystal symmetry, and orientation of the crystal lattice. This information can be used to
+        determine the composition of a material, to identify unknown materials, and to study the properties of materials
+        at the atomic and molecular level.</p>
+
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="insImgs">
+      <img class="ins4" src="ins4.jpg" alt="">
+      <img class="ins2"  src="ins2.jpg" alt="">
+    </div>
+  </section>
+
+  <script>
+    // document.getElementById("quiz").
+    function showSection(sectionId) {
+
+      // hide all sections
+      document.querySelectorAll('section').forEach(function (section) {
+        section.style.display = 'none';
+      });
+      // show the selected section
+      document.getElementById(sectionId).style.display = 'block';
+
+    }
+
+  </script>
+</body>
+
+</html>
